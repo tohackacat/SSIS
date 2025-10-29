@@ -1,0 +1,61 @@
+name: Blocker / Clarification
+description: Use this when you are stuck waiting on another task or you need a decision from lead.
+title: "[BLOCKED] <short title>"
+labels:
+  - question
+  - blocked
+body:
+  - type: textarea
+    id: blocker
+    attributes:
+      label: What is blocking you
+      description: Describe what you cannot do right now.
+      placeholder: I cannot finish addCompletedCourse() because I do not know how we are storing completed courses on Student
+
+    validations:
+      required: true
+
+  - type: textarea
+    id: needed
+    attributes:
+      label: What you need to move forward
+      description: Be specific.
+      placeholder: I need final field names on Student for completedCourses and I need to know if GPA is double or int
+    validations:
+      required: true
+
+  - type: input
+    id: related-task
+    attributes:
+      label: Related task or PR
+      description: Which task this is blocking or which PR you are trying to finish.
+      placeholder: TASK Student Management Model (issue #12)
+    validations:
+      required: true
+
+  - type: input
+    id: owner
+    attributes:
+      label: Blocked person
+      description: Who is currently blocked.
+      placeholder: tohackacat
+    validations:
+      required: true
+
+  - type: input
+    id: needs-answer-from
+    attributes:
+      label: Needs answer from
+      description: Who can unblock this.
+      placeholder: Lead
+    validations:
+      required: true
+
+  - type: textarea
+    id: urgency
+    attributes:
+      label: Urgency
+      description: Why this matters right now.
+      placeholder: If I cannot get this answered today, Milestone 1 slips and Milestone 2 menu work cannot start
+    validations:
+      required: true
