@@ -1,58 +1,28 @@
-name: Infra / Process
-description: Repository process work (CONTRIBUTING.md, ruleset, templates, CI later).
+name: Infra
+description: Repo/process work (docs, templates, rules).
 title: "[INFRA] <short title>"
 labels:
-  - documentation
   - chore
+  - documentation
 body:
   - type: input
     id: summary
     attributes:
       label: Summary
-      description: What repo/process change is being added or updated.
-      placeholder: Add CONTRIBUTING.md and PR / Issue templates
-
-  - type: textarea
-    id: reason
-    attributes:
-      label: Why we need this
-      description: What problem this solves for the team.
-      placeholder: We need consistent branch naming, commit style, and review rules so main stays demoable and grading is trackable
+      placeholder: Add PR and issue templates
     validations:
       required: true
-
   - type: textarea
     id: deliverables
     attributes:
       label: Deliverables
-      description: Exact outputs that must exist after this work.
-      placeholder: CONTRIBUTING.md in repo root; .github/ISSUE_TEMPLATE/*.yml created; .github/pull_request_template.md created; ruleset in Settings updated
+      placeholder: Files or settings that will exist/change after this change
     validations:
       required: true
-
-  - type: input
-    id: owner
-    attributes:
-      label: Owner
-      description: Who is doing this work.
-      placeholder: tohackacat
-    validations:
-      required: true
-
-  - type: input
-    id: milestone
-    attributes:
-      label: Milestone
-      description: Which milestone must include this.
-      placeholder: Milestone 1 - Core data and storage
-    validations:
-      required: true
-
   - type: textarea
     id: acceptance
     attributes:
-      label: Acceptance / Done means
-      description: How we verify this issue can be closed.
-      placeholder: When I open New Issue I see the forms, when I open New Pull Request I see the PR template, and CONTRIBUTING.md documents branch naming and sync rules
+      label: Done when
+      placeholder: How we’ll confirm it works in the GitHub UI
     validations:
       required: true

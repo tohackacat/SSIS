@@ -1,5 +1,5 @@
 name: Bug
-description: Something in main is broken or does not match expected behavior.
+description: Something in main is broken.
 title: "[BUG] <short title>"
 labels:
   - bug
@@ -7,78 +7,27 @@ body:
   - type: textarea
     id: observed
     attributes:
-      label: Observed behavior
-      description: What actually happened.
-      placeholder: Running the program and choosing Student Management crashes with NullPointerException
-
+      label: What happened
+      placeholder: Crash, wrong output, error message
     validations:
       required: true
-
   - type: textarea
     id: expected
     attributes:
-      label: Expected behavior
-      description: What you thought should happen instead.
-      placeholder: Program should show the Student Management menu options and wait for input, not crash
-
+      label: What should happen
     validations:
       required: true
-
   - type: textarea
-    id: steps
+    id: reproduce
     attributes:
-      label: Steps to reproduce
-      description: Exact steps so someone else can see the bug.
-      placeholder: Start program, enter 1 at main menu, enter 2 to View All Students
-
+      label: How to reproduce
+      placeholder: Steps and inputs
     validations:
       required: true
-
-  - type: dropdown
-    id: severity
-    attributes:
-      label: Severity
-      description: How bad is this.
-      options:
-        - blocks demo
-        - annoying but workaround exists
-        - cosmetic
-      default: 0
-    validations:
-      required: true
-
-  - type: input
-    id: area
-    attributes:
-      label: Area
-      description: Which part of the system is affected.
-      placeholder: datastore / student menu / GPA update / seed data
-    validations:
-      required: true
-
-  - type: input
-    id: owner
-    attributes:
-      label: Fix owner
-      description: Who should take this.
-      placeholder: tohackacat
-    validations:
-      required: true
-
-  - type: input
-    id: milestone
-    attributes:
-      label: Milestone impact
-      description: Which milestone is at risk because of this bug.
-      placeholder: Milestone 2 - Terminal flow
-    validations:
-      required: true
-
   - type: textarea
     id: acceptance
     attributes:
-      label: Acceptance / Fixed when
-      description: What must be true before we close this bug.
-      placeholder: Program can enter Student Management without throwing, and View All Students prints seeded students
+      label: Done when
+      placeholder: What proves it’s fixed
     validations:
       required: true
