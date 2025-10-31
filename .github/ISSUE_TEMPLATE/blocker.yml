@@ -1,61 +1,50 @@
-name: Blocker / Clarification
-description: Use this when you are stuck waiting on another task or you need a decision from lead.
+name: Blocker
+description: You're stuck and need something to proceed.
 title: "[BLOCKED] <short title>"
 labels:
-  - question
   - blocked
+  - question
 body:
   - type: textarea
-    id: blocker
+    id: problem
     attributes:
-      label: What is blocking you
-      description: Describe what you cannot do right now.
-      placeholder: I cannot finish addCompletedCourse() because I do not know how we are storing completed courses on Student
-
+      label: What's blocking you
+      placeholder: I can't finish X because Y isn't available or decided yet.
     validations:
       required: true
 
   - type: textarea
-    id: needed
+    id: need
     attributes:
-      label: What you need to move forward
-      description: Be specific.
-      placeholder: I need final field names on Student for completedCourses and I need to know if GPA is double or int
+      label: What you need
+      placeholder: Decision, review, API change, data, example input, etc.
     validations:
       required: true
 
   - type: input
-    id: related-task
+    id: related
     attributes:
-      label: Related task or PR
-      description: Which task this is blocking or which PR you are trying to finish.
-      placeholder: TASK Student Management Model (issue #12)
+      label: Related issue or PR
+      placeholder: #123 or link
     validations:
       required: true
 
-  - type: input
-    id: owner
-    attributes:
-      label: Blocked person
-      description: Who is currently blocked.
-      placeholder: tohackacat
-    validations:
-      required: true
-
-  - type: input
-    id: needs-answer-from
-    attributes:
-      label: Needs answer from
-      description: Who can unblock this.
-      placeholder: Lead
-    validations:
-      required: true
-
-  - type: textarea
+  - type: dropdown
     id: urgency
     attributes:
       label: Urgency
-      description: Why this matters right now.
-      placeholder: If I cannot get this answered today, Milestone 1 slips and Milestone 2 menu work cannot start
+      options:
+        - today
+        - this week
+        - not urgent
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Unblocked when
+      placeholder: What must happen so you can continue.
     validations:
       required: true
