@@ -1,0 +1,68 @@
+name: Task
+description: Single unit of work for the SIS project (feature, data model, menu action, etc).
+title: "[TASK] <short title>"
+labels:
+  - enhancement
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Short description of what this task is.
+      placeholder: Implement Student model with GPA, completedCourses, graduation credit constant
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal / Why
+      description: Why are we doing this and what part of the milestone or assignment does it support.
+      placeholder: Supports Milestone 1 (Core data and storage). Needed for Student Management menu actions like Update GPA and Check Graduation Eligibility.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope / Deliverables
+      description: Everything that must exist when this task is done.
+      placeholder: Private fields and getters/setters on Student, REQUIRED_CREDITS_FOR_GRADUATION constant, toString() with readable output, seed data updated
+    validations:
+      required: true
+
+  - type: input
+    id: milestone
+    attributes:
+      label: Milestone
+      description: Which milestone this is part of.
+      placeholder: Milestone 1 - Core data and storage
+    validations:
+      required: true
+
+  - type: input
+    id: owner
+    attributes:
+      label: Owner
+      description: Who is responsible for delivering this.
+      placeholder: tohackacat
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance / Done means
+      description: How we will verify this task is complete and can close.
+      placeholder: We can create a Student, set and get GPA, call toString() and see readable info, and the program boots with demo students
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / Blocking
+      description: Is this task waiting on anything else to land in main.
+      placeholder: Needs datastore interface from Lead before finalizing method names
+    validations:
+      required: false
