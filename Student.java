@@ -4,6 +4,13 @@ public class Student {
   private double gpa;
   private int credReqs;
 
+  public Student(String id, String name, double gpa, int credReqs) {
+    this.id = id;
+    this.name = name;
+    this.gpa = gpa;
+    this.credReqs = credReqs;
+  }
+
   public String getId() {
     return id;
   }
