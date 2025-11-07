@@ -8,10 +8,11 @@ public class Faculty{
     private double hourlyRate; 
 
     //Constructor
-    public Faculty(String name, String id, boolean tenure, double hours, double hourlyRate){
-        this.name = name;
+    public Faculty(string id, string name, boolean tenure, double salary, double hours, double hourlyRate){
         this.id = id;
+        this.name = name;
         this.tenure = tenure;
+        this.salary = salary;
         this.hours = hours;
         this.hourlyRate = hourlyRate;
     }
@@ -36,19 +37,18 @@ public class Faculty{
         return salary;
     }
 
-    //Setters
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setTenure(boolean tenure){
-        this.tenure = tenure;
-    }
-    public void setSalary(double salary){
-        this.salary = salary;
-    }
-    public void setSalary(){
-        salary = hourlyRate * hours;
-    }
 
-    
+
+    ////toString method returns object details as a String
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ").append(name)
+          .append("\nID: ").append(id)
+          .append("\nTenure: ").append(tenure)
+          .append("\nHours: ").append(hours)
+          .append("\nHourly Rate: ").append(hourlyRate)
+          .append("\nSalary: ").append(salary);
+
+          return sb.toString();
+    }
 }

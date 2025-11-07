@@ -10,10 +10,15 @@ public class Course {
     private String season;
 
     //Constructor
-    public Course(String name, String id, int credits){
-        this.name = name;
+    public Course(String id, string name, int credits, String description, String location, int year, String season, int length){
         this.id = id;
+        this.name = name;
         this.credits = credits;
+        this.description = description;
+        this.location = location;
+        this.year = year;
+        this.season = season;
+        this.length = length;
     }
 
     //Getters
@@ -42,10 +47,19 @@ public class Course {
         return season;
     }
 
-    //Setters
 
     //toString method returns object details as a String
     public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ").append(name)
+          .append("\nID: ").append(id)
+          .append("\nNum of Credits: ").append(credits)
+          .append("\nCourse Description: ").append(description)
+          .append("\nLocation: ").append(location)
+          .append("\nLength: ").append(length)
+          .append("\nSeason: ").append(season)
+          .append("\nYear: ").append(year);
 
+          return sb.toString;
     }
 }
