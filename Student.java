@@ -1,17 +1,22 @@
 public class Student {
+  private String id;
+  private String name;
+  private double gpa;
+  private int credReqs;
+
   public String getId() {
-    return "MK001"; // TODO: return real id
+    return id;
   }
 
   public String getName() {
-    return "Omar"; // TODO: return real Name
+    return name;
   }
 
   public double getGpa() {
-    return 3.5; // TODO: return real gpa
+    return gpa;
   }
 
   public int getCredReqs() {
-    return 60; // TODO: return real credits requirements
+    return credReqs;
   }
 }
