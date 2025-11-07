@@ -15,6 +15,7 @@ String getLocation ()
 int getYear()
 String getSeason()
 int getLength() //in weeks
+toString()
 
 # Faculty
 Faculty(string id, string name, boolean tenure, double salary, double hours, double hourlyRate)
@@ -24,3 +25,4 @@ Boolean getTenure()
 double getSalary()
 double getHours()
 double getHourlyRate()
+toString()
