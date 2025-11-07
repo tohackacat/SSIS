@@ -8,7 +8,7 @@ public class Faculty{
     private double hourlyRate; 
 
     //Constructor
-    public Faculty(string id, string name, boolean tenure, double salary, double hours, double hourlyRate){
+    public Faculty(String id, String name, boolean tenure, double salary, double hours, double hourlyRate){
         this.id = id;
         this.name = name;
         this.tenure = tenure;
@@ -21,7 +21,7 @@ public class Faculty{
     public String getName(){
         return name;
     }
-    public String getID(){
+    public String getId(){
         return id;
     }
     public boolean getTenure(){

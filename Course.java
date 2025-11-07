@@ -10,7 +10,7 @@ public class Course {
     private String season;
 
     //Constructor
-    public Course(String id, string name, int credits, String description, String location, int year, String season, int length){
+    public Course(String id, String name, int credits, String description, String location, int year, String season, int length){
         this.id = id;
         this.name = name;
         this.credits = credits;
@@ -25,7 +25,7 @@ public class Course {
     public String getName(){
         return name;
     }
-    public String getID(){
+    public String getId(){
         return id;
     }
     public int getCredits(){
@@ -60,6 +60,6 @@ public class Course {
           .append("\nSeason: ").append(season)
           .append("\nYear: ").append(year);
 
-          return sb.toString;
+          return sb.toString();
     }
 }
