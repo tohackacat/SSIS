@@ -1,8 +1,8 @@
 # Student
 Student(String id, String name, double gpa, int credReqs)
-String getID()
+String getId()
 String getName ()
-double getGPA()
+double getGpa()
 int getCredReqs() 
 
 # Course
