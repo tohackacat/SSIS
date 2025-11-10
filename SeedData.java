@@ -30,6 +30,21 @@ public class SeedData {
         Student student2 = new Student("U150934", "Sakura Haruno", 3.9, 120);
         Student student3 = new Student("U165981", "Sasuke Uchiha", 3.7, 120);
 
+        //Enrollments
+        Enrollment enroll1 = new Enrollment(prof1, course1);
+        Enrollment enroll2 = new Enrollment(prof2, course3);
+        Enrollment enroll3 = new Enrollment(prof3, course2);
+
+        Student [] students = {student1, student2, student3};
+        for(Student s: students){
+            enroll1.addStudent(s);
+            enroll2.addStudent(s);
+            enroll3.addStudent(s);
+        }
+
+        System.out.println(enroll1.toString());
+        System.out.println(enroll2.toString());
+        System.out.println(enroll3.toString());
     }
     
 }
