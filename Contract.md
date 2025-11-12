@@ -3,7 +3,10 @@ Student(String id, String name, double gpa, int credReqs)
 String getID()
 String getName ()
 double getGPA()
-int getCredReqs() 
+int getCredReqs()
+void addStudent(Student student);
+Student findStudentById(String id);
+List<Student> listStudents();
 
 # Course
 Course(String id, string name, int credits, String description, String location, int year, String Season, int length)
@@ -16,6 +19,9 @@ int getYear()
 String getSeason()
 int getLength() //in weeks
 toString()
+void addCourse(Course course);
+Course findCourseById(String id);
+List<Course> listCourses();
 
 # Faculty
 Faculty(string id, string name, boolean tenure, double salary, double hours, double hourlyRate)
