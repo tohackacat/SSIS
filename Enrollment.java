@@ -4,7 +4,8 @@
  * It contains a method to add a student and set a new instructor.
  */
 
-public class Enrollment {
+public record Enrollment() {
+} Enrollment {
     //Attributes
     private String courseId;
     private String studentId; 
