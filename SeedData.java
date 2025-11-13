@@ -31,20 +31,21 @@ public class SeedData {
         Student student3 = new Student("U165981", "Sasuke Uchiha", 3.7, 120);
 
         //Enrollments
-        Enrollment enroll1 = new Enrollment(prof1, course1);
-        Enrollment enroll2 = new Enrollment(prof2, course3);
-        Enrollment enroll3 = new Enrollment(prof3, course2);
+        Enrollment enroll1 = new Enrollment(course1.getId(), student1.getId());
+        Enrollment enroll2 = new Enrollment(course1.getId(), student2.getId());
+        Enrollment enroll3 = new Enrollment(course1.getId(), student3.getId());
+        Enrollment enroll4 = new Enrollment(course2.getId(), student1.getId());
+        Enrollment enroll5 = new Enrollment(course2.getId(), student2.getId());
+        Enrollment enroll6 = new Enrollment(course2.getId(), student3.getId());
+        Enrollment enroll7 = new Enrollment(course3.getId(), student1.getId());
+        Enrollment enroll8 = new Enrollment(course3.getId(), student2.getId());
+        Enrollment enroll9 = new Enrollment(course3.getId(), student3.getId());
 
-        Student [] students = {student1, student2, student3};
-        for(Student s: students){
-            enroll1.addStudent(s);
-            enroll2.addStudent(s);
-            enroll3.addStudent(s);
-        }
+        //Instructings
+        Instructing instructing1 = new Instructing(course1.getId(),prof1);
+        Instructing instructing2 = new Instructing(course2.getId(),prof2);
+        Instructing instructing3 = new Instructing(course3.getId(),prof3);
 
-        System.out.println(enroll1.toString());
-        System.out.println(enroll2.toString());
-        System.out.println(enroll3.toString());
     }
     
 }
