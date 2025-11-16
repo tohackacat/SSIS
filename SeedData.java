@@ -22,7 +22,7 @@ public class SeedData {
             boundary states, scattering, and tunneling
             """;
         Course course3 = new Course("PH 111", "Intro to Quantum Physics", 3, 
-                                course1Desc, "M 120", 2025, "Spring", 15);
+                                course3Desc, "M 120", 2025, "Spring", 15);
 
         
         //Test Students
@@ -42,9 +42,9 @@ public class SeedData {
         Enrollment enroll9 = new Enrollment(course3.getId(), student3.getId());
 
         //Instructings
-        Instructing instructing1 = new Instructing(course1.getId(),prof1);
-        Instructing instructing2 = new Instructing(course2.getId(),prof2);
-        Instructing instructing3 = new Instructing(course3.getId(),prof3);
+        Instructing instructing1 = new Instructing(course1.getId(),prof1.getId());
+        Instructing instructing2 = new Instructing(course2.getId(),prof2.getId());
+        Instructing instructing3 = new Instructing(course3.getId(),prof3.getId());
 
     }
     
