@@ -28,10 +28,7 @@ double getHourlyRate()
 toString()
 
 # Enrollment
-Enrollment(Faculty instructor, Course course)
-Faculty getFaculty()
-Course getCourse()
-ArrayList<Student> getStudents()
-addStudent(Student student)
-setFaculty(Faculty instructor)
-toString()
+public record Enrollment(String courseId, String studentId) 
+
+# Instructing
+public record Instructing(String courseId, String facultyId)
