@@ -1,51 +1,58 @@
+import java.util.List;
+
 public class SeedData {
-    public static void main(String[] args) {
-        //Test Faculty
-        Faculty prof1 = new Faculty("F01234", "Kakashi Hatake", false,
-         60000, 40, 50);
-        Faculty prof2 = new Faculty("F08675", "Rachel Moore", true,
-         60000, 40, 50);
-        Faculty prof3 = new Faculty("F02864", "Kurenai Yuhi", false,
-         60000, 40, 50);
+    public static final List<Faculty> PROFS = List.of(
+            new Faculty("F01234", "Kakashi Hatake", false, 60000, 40, 50),
+            new Faculty("F08675", "Rachel Moore", true, 60000, 40, 50),
+            new Faculty("F02864", "Kurenai Yuhi", false, 60000, 40, 50));
 
-        //Test Courses
-        String course1Desc = "A beginner course introducing students to programming fundamentals";
-        Course course1 = new Course("CS 101", "Intro to Programming", 3, 
-         course1Desc, "H-201", 2025, "Fall", 15);
-        
-        String course2Desc = "An introductory course on mathematical proofs and logic";
-        Course course2 = new Course("MA 101", "Introductory Maths", 3,
-         course2Desc, "B-13", 2025, "Fall", 15);
-        
-        String course3Desc = """
-            A course covering topics including quantum wave functions,
-            boundary states, scattering, and tunneling
-            """;
-        Course course3 = new Course("PH 111", "Intro to Quantum Physics", 3, 
-                                course1Desc, "M 120", 2025, "Spring", 15);
+    public static final List<Course> COURSES = List.of(
+            new Course(
+                    "CS 101",
+                    "Intro to Programming",
+                    3,
+                    "A beginner course introducing students to programming fundamentals",
+                    "H-201",
+                    2025,
+                    15,
+                    "Fall"),
+            new Course(
+                    "MA 101",
+                    "Introductory Maths",
+                    3,
+                    "An introductory course on mathematical proofs and logic",
+                    "B-13",
+                    2025,
+                    15,
+                    "Fall"),
+            new Course(
+                    "PH 111",
+                    "Intro to Quantum Physics",
+                    3,
+                    """
+                            A course covering topics including quantum wave functions,
+                            boundary states, scattering, and tunneling
+                            """,
+                    "M 120",
+                    2025,
+                    15,
+                    "Spring"));
 
-        
-        //Test Students
-        Student student1 = new Student("U123456", "Naruto Uzumaki", 2.5, 120);
-        Student student2 = new Student("U150934", "Sakura Haruno", 3.9, 120);
-        Student student3 = new Student("U165981", "Sasuke Uchiha", 3.7, 120);
+    public static final List<Student> STUDENTS = List.of(
+            new Student("U123456", "Naruto Uzumaki", 2.5, 120),
+            new Student("U150934", "Sakura Haruno", 3.9, 120),
+            new Student("U165981", "Sasuke Uchiha", 3.7, 120));
 
-        //Enrollments
-        Enrollment enroll1 = new Enrollment(course1.getId(), student1.getId());
-        Enrollment enroll2 = new Enrollment(course1.getId(), student2.getId());
-        Enrollment enroll3 = new Enrollment(course1.getId(), student3.getId());
-        Enrollment enroll4 = new Enrollment(course2.getId(), student1.getId());
-        Enrollment enroll5 = new Enrollment(course2.getId(), student2.getId());
-        Enrollment enroll6 = new Enrollment(course2.getId(), student3.getId());
-        Enrollment enroll7 = new Enrollment(course3.getId(), student1.getId());
-        Enrollment enroll8 = new Enrollment(course3.getId(), student2.getId());
-        Enrollment enroll9 = new Enrollment(course3.getId(), student3.getId());
+    public static final List<Instructing> INSTRUCTINGS = List.of(
+            new Instructing(COURSES.get(0).id(), PROFS.get(0).id()),
+            new Instructing(COURSES.get(1).id(), PROFS.get(1).id()),
+            new Instructing(COURSES.get(2).id(), PROFS.get(2).id()));
 
-        //Instructings
-        Instructing instructing1 = new Instructing(course1.getId(),prof1);
-        Instructing instructing2 = new Instructing(course2.getId(),prof2);
-        Instructing instructing3 = new Instructing(course3.getId(),prof3);
+    public static final List<Enrollment> ENROLLMENTS = COURSES.stream()
+            .flatMap(c -> STUDENTS.stream().map(s -> new Enrollment(c.id(), s.id())))
+            .toList();
 
+    private SeedData() {
     }
-    
+
 }
