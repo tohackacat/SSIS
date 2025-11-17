@@ -11,6 +11,6 @@ public interface IDataStore{
     void addCourse(Course course);
     void removeCourse(String courseId);
     void updateCourse(String courseId, Course course);
-    Course getCourseById(String studentId);
+    Course getCourseById(String courseId);
     List<Course> listCourses();
 }

@@ -62,8 +62,8 @@ public class InMemoryDataStore implements IDataStore {
     }
 
     @Override
-    public Course getCourseById(String studentId) {
-        return courseMap.get(studentId);
+    public Course getCourseById(String courseId) {
+        return courseMap.get(courseId);
     }
 
     @Override
