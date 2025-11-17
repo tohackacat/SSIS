@@ -1,38 +1,73 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//Now we are implementing the data store interface
-public class InMemoryDataStore implements DataStore {
-    private final Map<String, Student> studentMap = new HashMap<>();
-    private final Map<String, Course> CourseMap = new HashMap<>();
+import java.util.NoSuchElementException;
 
-    //now the methods defined on DataStore for students
+public class InMemoryDataStore implements IDataStore {
+    private final Map<String, Student> studentMap = new HashMap<>();
+    private final Map<String, Course> courseMap = new HashMap<>();
+
     @Override
-    public void addStudent(Student student){
-        studentMap.put(student.getId(), student);
+    public void addStudent(Student student) {
+        if (studentMap.putIfAbsent(student.id(), student) != null) {
+            throw new IllegalStateException("Student already exists: " + student.id());
+        }
     }
+
     @Override
-    public Student findStudentById(String id){
-        return studentMap.get(id);
+    public void removeStudent(String studentId) {
+        studentMap.remove(studentId);
     }
+
     @Override
-    public List<Student> listStudents(){
-        return new ArrayList<>(studentMap.values());
+    public void updateStudent(String studentId, Student student) {
+        if (!student.id().equals(studentId))
+            throw new IllegalArgumentException("Mismatched student id");
+
+        if (studentMap.replace(studentId, student) == null)
+            throw new NoSuchElementException("No student with id: " + studentId);
+
     }
-    //now for courses
+
     @Override
-    public void addCourse(Course course){
-        CourseMap.put(course.getId(), course);
+    public Student getStudentById(String studentId) {
+        return studentMap.get(studentId);
     }
+
     @Override
-    public Course findCourseById(String id){
-        return CourseMap.get(id);
+    public List<Student> listStudents() {
+        return List.copyOf(studentMap.values());
     }
+
     @Override
-    public List<Course> listCourses(){
-        return new ArrayList<>(CourseMap.values());
+    public void addCourse(Course course) {
+        if (courseMap.putIfAbsent(course.id(), course) != null) {
+            throw new IllegalStateException("Course already exists: " + course.id());
+        }
+    }
+
+    @Override
+    public void removeCourse(String courseId) {
+        courseMap.remove(courseId);
+    }
+
+    @Override
+    public void updateCourse(String courseId, Course course) {
+        if (!course.id().equals(courseId))
+            throw new IllegalArgumentException("Mismatched course id");
+
+        if (courseMap.replace(courseId, course) == null)
+            throw new NoSuchElementException("No course with id: " + courseId);
+
+    }
+
+    @Override
+    public Course getCourseById(String studentId) {
+        return courseMap.get(studentId);
+    }
+
+    @Override
+    public List<Course> listCourses() {
+        return List.copyOf(courseMap.values());
     }
 }
-
-
