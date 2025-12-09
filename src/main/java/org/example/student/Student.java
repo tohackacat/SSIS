@@ -1,3 +1,4 @@
+package org.example.student;
 /**
  * Student
  * @param id

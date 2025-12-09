@@ -1,3 +1,4 @@
+package org.example.faculty;
 /**
  * Faculty
  * @param name
