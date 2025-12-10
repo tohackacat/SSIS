@@ -5,8 +5,8 @@ import java.util.Optional;
 
 
 public interface CourseRepository {
-    Iterable<Course> findAll();//return an iterable (broader scope than list, can be reiterated over)
-
+    Iterable<Course> findAll();
+  
     Optional<Course> findById(EntityId id);
 
     void insert(Course course);
