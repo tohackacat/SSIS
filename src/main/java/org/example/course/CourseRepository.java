@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface CourseRepository {
     Iterable<Course> findAll();
-
+  
     Optional<Course> findById(EntityId id);
 
     void insert(Course course);
