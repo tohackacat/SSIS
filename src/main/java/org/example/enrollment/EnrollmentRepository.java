@@ -12,6 +12,6 @@ public interface EnrollmentRepository {
 
     void update(Enrollment enrollment);
 
-    void delete(Enrollment enrollment);
+    void delete(EntityId id);
     
 }
