@@ -32,7 +32,6 @@ public class JdbcFacultyRepository implements FacultyRepository {
                         }
                     }
         } catch (SQLException e) {
-            // TODO: handle exception
             throw new RuntimeException("Failed to load faculty", e);
         }
         return result;
@@ -64,7 +63,6 @@ public class JdbcFacultyRepository implements FacultyRepository {
                 statement.setString(3,faculty.department());
                 statement.executeUpdate();
         } catch (SQLException e) {
-            // TODO: handle exception
             throw new RuntimeException("Failed to insert faculty", e);
         }
     }
@@ -80,12 +78,28 @@ public class JdbcFacultyRepository implements FacultyRepository {
                     statement.executeUpdate();
             
         } catch (SQLException e) {
-            // TODO: handle exception
             throw new RuntimeException("Failed to update faculty", e);
         }
     }
  
     @Override
-    public void delete(EntityId id){}
-    
-}
+    public void delete(EntityId id){
+        try(Connection connection = provider.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                "DELETE FROM faculty  WHERE id = ?")) {
+                    statement.setString(1,id.toString());
+                    statement.executeUpdate();
+        } catch(SQLException e){
+            throw new RuntimeException("Failed to delete faculty" + id, e);
+        }
+
+    }
+
+    private Faculty mapRow(ResultSet rs) throws SQLException{
+        String id = rs.getString("id");
+        String personId = rs.getString("person_id");
+        String department = rs.getString("department");
+        EntityId entityId = EntityId.fromString(id);
+        EntityId personEntityId = EntityId.fromString(personId);
+        return new Faculty(entityId, personEntityId, department);
+    }
