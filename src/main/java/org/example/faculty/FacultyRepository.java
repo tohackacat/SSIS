@@ -14,6 +14,6 @@ public interface FacultyRepository {
 
     void update(Faculty faculty);
 
-    void delete(Faculty faculty);
+    void delete(EntityId id);
     
 }
