@@ -8,7 +8,7 @@ import org.example.faculty.dto.FacultyDto;
 public interface FacultyService {
     List<FacultyDto> findAll();
 
-    Optional<FacultyDto> findById();
+    Optional<FacultyDto> findById(String id);
 
     FacultyDto create(String fullName, String email, String department);
 
