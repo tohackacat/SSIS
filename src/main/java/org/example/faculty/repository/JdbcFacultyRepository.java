@@ -103,3 +103,4 @@ public class JdbcFacultyRepository implements FacultyRepository {
         EntityId personEntityId = EntityId.fromString(personId);
         return new Faculty(entityId, personEntityId, department);
     }
+}

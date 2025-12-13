@@ -58,7 +58,7 @@ public class DefaultFacultyService implements FacultyService{
         }
 
         Person person = new Person(personId, fullName, optEmail);
-        personRepository = insert(person);
+        personRepository.insert(person);
 
         Faculty faculty = new Faculty(facultyId, personId, department);
         facultyRepository.insert(faculty);
@@ -89,7 +89,7 @@ public class DefaultFacultyService implements FacultyService{
         }
 
         Person existingPerson = optPerson.get();
-        Person updatedPerson = new Permission(
+        Person updatedPerson = new Person(
             existingPerson.id(),
             fullName,
             optEmail
@@ -120,7 +120,7 @@ public class DefaultFacultyService implements FacultyService{
             return Optional.empty();
         }
         Person person = optPerson.get();
-        String email = optPerson.email().orElse("");
+        String email = person.email().orElse("");
 
         return Optional.of(new FacultyDto(
             faculty.id().toString(),
