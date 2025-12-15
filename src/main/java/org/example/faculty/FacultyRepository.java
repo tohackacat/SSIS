@@ -1,8 +1,8 @@
 package org.example.faculty;
 
-import java.util.Optional;
-
 import org.example.core.EntityId;
+
+import java.util.Optional;
 
 public interface FacultyRepository {
 
@@ -15,5 +15,5 @@ public interface FacultyRepository {
     void update(Faculty faculty);
 
     void delete(EntityId id);
-    
+
 }

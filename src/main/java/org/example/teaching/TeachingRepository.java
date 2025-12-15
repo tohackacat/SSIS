@@ -1,7 +1,8 @@
 package org.example.teaching;
-import java.util.Optional;
 
 import org.example.core.EntityId;
+
+import java.util.Optional;
 
 public interface TeachingRepository {
     Iterable<Teaching> findAll();
