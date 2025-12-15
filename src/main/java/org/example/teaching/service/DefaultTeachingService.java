@@ -11,7 +11,6 @@ import org.example.teaching.Teaching;
 import org.example.teaching.TeachingRepository;
 import org.example.teaching.TeachingService;
 import org.example.teaching.dto.TeachingDto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
