@@ -25,7 +25,7 @@ public class JdbcFacultyRepository implements FacultyRepository {
         List<Faculty> result = new ArrayList<>();
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "SELECT id, person_id, department FROM faculty ORDER BY department, id")) {
+                    "SELECT id, person_id, department, rate * hours AS salary FROM faculty ORDER BY department, id")) {
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
                     result.add(mapRow(rs));
@@ -41,7 +41,7 @@ public class JdbcFacultyRepository implements FacultyRepository {
     public Optional<Faculty> findById(EntityId id) {
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "SELECT id, person_id, department FROM faculty WHERE id = ?")) {
+                     "SELECT id, person_id, department, rate * hours AS salary, FROM faculty WHERE id = ?")) {
             statement.setString(1, id.toString());
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
@@ -58,10 +58,12 @@ public class JdbcFacultyRepository implements FacultyRepository {
     public void insert(Faculty faculty) {
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "INSERT INTO faculty (id, person_id, department) VALUES (?, ?, ?)")) {
+                     "INSERT INTO faculty (id, person_id, department, rate, hours) VALUES (?, ?, ?, ?, ?)")) {
             statement.setString(1, faculty.id().toString());
             statement.setString(2, faculty.personId().toString());
             statement.setString(3, faculty.department());
+            statement.setDouble(4, faculty.rate());
+            statement.setDouble(5, faculty.hours());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to insert faculty", e);
@@ -72,10 +74,12 @@ public class JdbcFacultyRepository implements FacultyRepository {
     public void update(Faculty faculty) {
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "UPDATE faculty SET person_id = ?, department = ? WHERE id = ?")) {
+                     "UPDATE faculty SET person_id = ?, department = ?, rate = ?, hours = ? WHERE id = ?")) {
             statement.setString(1, faculty.personId().toString());
             statement.setString(2, faculty.department());
-            statement.setString(3, faculty.id().toString());
+            statement.setDouble(3, faculty.rate());
+            statement.setDouble(4, faculty.hours());
+            statement.setString(5, faculty.id().toString());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to update faculty", e);
@@ -98,6 +102,8 @@ public class JdbcFacultyRepository implements FacultyRepository {
         EntityId entityId = EntityId.fromString(rs.getString("id"));
         EntityId personEntityId = EntityId.fromString(rs.getString("person_id"));
         String department = rs.getString("department");
-        return new Faculty(entityId, personEntityId, department);
+        double rate = rs.getDouble("rate");
+        double hours = rs.getDouble("hours");
+        return new Faculty(entityId, personEntityId, department, rate, hours);
     }
 }

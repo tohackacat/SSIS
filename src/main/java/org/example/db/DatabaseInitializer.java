@@ -52,6 +52,8 @@ public record DatabaseInitializer(DatabaseProvider provider) {
                 id TEXT PRIMARY KEY,
                 person_id TEXT NOT NULL,
                 department TEXT NOT NULL,
+                rate TEXT NOT NULL,
+                hours TEXT NOT NULL,
                 FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
                 );
                 
@@ -144,15 +146,15 @@ public record DatabaseInitializer(DatabaseProvider provider) {
                     ('cccccccc-cccc-cccc-cccc-cccccccc0015', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa0f', 2020),
                     ('cccccccc-cccc-cccc-cccc-cccccccc0016', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa10', 2024);
                 
-                INSERT OR IGNORE INTO faculty (id, person_id, department) VALUES
-                    ('cccccccc-cccc-cccc-cccc-cccccccccccc', '33333333-3333-3333-3333-333333333333', 'Computer Science'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0001', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0001', 'Computer Science'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0002', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0002', 'Computer Science'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0003', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0003', 'Mathematics'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0004', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0004', 'Computer Science'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0005', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0005', 'Software Engineering'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0006', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0006', 'Computer Science'),
-                    ('dddddddd-dddd-dddd-dddd-dddddddd0007', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0007', 'Aerospace');
+                INSERT OR IGNORE INTO faculty (id, person_id, department, rate, hours) VALUES
+                    ('cccccccc-cccc-cccc-cccc-cccccccccccc', '33333333-3333-3333-3333-333333333333', 'Computer Science, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0001', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0001', 'Computer Science, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0002', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0002', 'Computer Science, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0003', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0003', 'Mathematics, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0004', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0004', 'Computer Science, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0005', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0005', 'Software Engineering, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0006', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0006', 'Computer Science, 24, 40'),
+                    ('dddddddd-dddd-dddd-dddd-dddddddd0007', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbb0007', 'Aerospace, 24, 40');
                 
                 INSERT OR IGNORE INTO courses (id, code, name, credits) VALUES
                     ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'CS101', 'Introduction to Computer Science', 6),
