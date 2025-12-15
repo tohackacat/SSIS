@@ -1,5 +1,10 @@
 package org.example.student.repository;
 
+import org.example.core.EntityId;
+import org.example.db.DatabaseProvider;
+import org.example.student.Student;
+import org.example.student.StudentRepository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,13 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.example.core.EntityId;
-import org.example.db.DatabaseProvider;
-import org.example.student.Student;
-import org.example.student.StudentRepository;
-
 public class JdbcStudentRepository implements StudentRepository {
-     private final DatabaseProvider provider;
+    private final DatabaseProvider provider;
 
     public JdbcStudentRepository(DatabaseProvider provider) {
         this.provider = provider;

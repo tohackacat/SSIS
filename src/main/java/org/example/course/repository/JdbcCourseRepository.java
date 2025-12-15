@@ -1,5 +1,10 @@
 package org.example.course.repository;
 
+import org.example.core.EntityId;
+import org.example.course.Course;
+import org.example.course.CourseRepository;
+import org.example.db.DatabaseProvider;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.example.core.EntityId;
-import org.example.course.Course;
-import org.example.course.CourseRepository;
-import org.example.db.DatabaseProvider;
 
 public class JdbcCourseRepository implements CourseRepository {
     private final DatabaseProvider provider;

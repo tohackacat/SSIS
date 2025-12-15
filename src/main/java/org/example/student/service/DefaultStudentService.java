@@ -1,9 +1,5 @@
 package org.example.student.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.example.core.EntityId;
 import org.example.person.Person;
 import org.example.person.PersonRepository;
@@ -11,6 +7,10 @@ import org.example.student.Student;
 import org.example.student.StudentRepository;
 import org.example.student.StudentService;
 import org.example.student.dto.StudentDto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class DefaultStudentService implements StudentService {
     private final StudentRepository studentRepository;

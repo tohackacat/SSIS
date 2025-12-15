@@ -1,9 +1,9 @@
 package org.example.student;
 
+import org.example.student.dto.StudentDto;
+
 import java.util.List;
 import java.util.Optional;
-
-import org.example.student.dto.StudentDto;
 
 public final class StudentController {
     private final StudentService service;

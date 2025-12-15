@@ -1,9 +1,9 @@
 package org.example.teaching;
 
+import org.example.teaching.dto.TeachingDto;
+
 import java.util.List;
 import java.util.Optional;
-
-import org.example.teaching.dto.TeachingDto;
 
 public final class TeachingController {
     private final TeachingService service;

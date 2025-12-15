@@ -1,11 +1,11 @@
 package org.example.student;
 
-import java.util.Optional;
-
 import org.example.core.EntityId;
 
-public interface  StudentRepository {
-     Iterable<Student> findAll();
+import java.util.Optional;
+
+public interface StudentRepository {
+    Iterable<Student> findAll();
 
     Optional<Student> findById(EntityId id);
 
