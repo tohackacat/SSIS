@@ -1,9 +1,9 @@
 package org.example.faculty;
 
+import org.example.faculty.dto.FacultyDto;
+
 import java.util.List;
 import java.util.Optional;
-
-import org.example.faculty.dto.FacultyDto;
 
 public interface FacultyService {
     List<FacultyDto> findAll();

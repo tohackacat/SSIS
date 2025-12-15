@@ -1,5 +1,10 @@
 package org.example.faculty.repository;
 
+import org.example.core.EntityId;
+import org.example.db.DatabaseProvider;
+import org.example.faculty.Faculty;
+import org.example.faculty.FacultyRepository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.example.core.EntityId;
-import org.example.db.DatabaseProvider;
-import org.example.faculty.Faculty;
-import org.example.faculty.FacultyRepository;
 
 public class JdbcFacultyRepository implements FacultyRepository {
     private final DatabaseProvider provider;

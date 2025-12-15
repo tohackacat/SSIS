@@ -1,9 +1,9 @@
 package org.example.person;
 
+import org.example.person.dto.PersonDto;
+
 import java.util.List;
 import java.util.Optional;
-
-import org.example.person.dto.PersonDto;
 
 public interface PersonService {
     List<PersonDto> findAll();

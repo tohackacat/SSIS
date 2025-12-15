@@ -20,7 +20,7 @@ public class DefaultCourseService implements CourseService {
 
     @Override
     public List<CourseDto> findAll() {
-        List<CourseDto> result = new ArrayList<>(); //initialize with List as apractice incase of translating to LinkedList
+        List<CourseDto> result = new ArrayList<>(); //initialize with List as practice in case of translating to LinkedList
         //populate list with all courses in repository
         for (Course course : repository.findAll()) {
             result.add(toDto(course));

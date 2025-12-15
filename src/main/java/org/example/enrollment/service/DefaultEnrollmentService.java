@@ -1,9 +1,5 @@
 package org.example.enrollment.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.example.core.EntityId;
 import org.example.course.Course;
 import org.example.course.CourseRepository;
@@ -15,6 +11,10 @@ import org.example.person.Person;
 import org.example.person.PersonRepository;
 import org.example.student.Student;
 import org.example.student.StudentRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class DefaultEnrollmentService implements EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
