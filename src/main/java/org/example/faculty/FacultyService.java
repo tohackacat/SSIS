@@ -10,9 +10,9 @@ public interface FacultyService {
 
     Optional<FacultyDto> findById(String id);
 
-    FacultyDto create(String fullName, String email, String department);
+    FacultyDto create(String fullName, String email, String department, double rate, double hours);
 
-    FacultyDto update(String id, String fullName, String email, String department);
+    FacultyDto update(String id, String fullName, String email, String department, double rate, double hours);
 
     void delete(String id);
 

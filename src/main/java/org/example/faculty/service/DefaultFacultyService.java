@@ -42,7 +42,7 @@ public class DefaultFacultyService implements FacultyService {
     }
 
     @Override
-    public FacultyDto create(String fullName, String email, String department) {
+    public FacultyDto create(String fullName, String email, String department, double rate, double hours) {
         EntityId personId = EntityId.random();
         EntityId facultyId = EntityId.random();
 
@@ -56,14 +56,14 @@ public class DefaultFacultyService implements FacultyService {
         Person person = new Person(personId, fullName, optEmail);
         personRepository.insert(person);
 
-        Faculty faculty = new Faculty(facultyId, personId, department);
+        Faculty faculty = new Faculty(facultyId, personId, department, rate, hours);
         facultyRepository.insert(faculty);
 
-        return new FacultyDto(facultyId.toString(), fullName, email, department);
+        return new FacultyDto(facultyId.toString(), fullName, email, department, rate, hours);
     }
 
     @Override
-    public FacultyDto update(String id, String fullName, String email, String department) {
+    public FacultyDto update(String id, String fullName, String email, String department, double rate, double hours) {
         EntityId facultyId = EntityId.fromString(id);
         Optional<Faculty> optFaculty = facultyRepository.findById(facultyId);
         if (optFaculty.isEmpty()) {
@@ -91,10 +91,10 @@ public class DefaultFacultyService implements FacultyService {
         );
         personRepository.update(updatedPerson);
 
-        Faculty updatedFaculty = new Faculty(faculty.id(), faculty.personId(), department);
+        Faculty updatedFaculty = new Faculty(faculty.id(), faculty.personId(), department, rate, hours);
         facultyRepository.update(updatedFaculty);
 
-        return new FacultyDto(id, fullName, email, department);
+        return new FacultyDto(id, fullName, email, department, rate, hours);
     }
 
     @Override
@@ -121,7 +121,9 @@ public class DefaultFacultyService implements FacultyService {
                 faculty.id().toString(),
                 person.fullName(),
                 email,
-                faculty.department()
+                faculty.department(),
+                faculty.rate(),
+                faculty.hours()
         ));
     }
 }

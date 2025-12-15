@@ -20,12 +20,12 @@ public final class FacultyController {
         return service.findById(id);
     }
 
-    public FacultyDto createFaculty(String fullName, String email, String department) {
-        return service.create(fullName, email, department);
+    public FacultyDto createFaculty(String fullName, String email, String department, double rate, double hours) {
+        return service.create(fullName, email, department, rate, hours);
     }
 
-    public FacultyDto updateFaculty(String id, String fullname, String email, String department) {
-        return service.update(id, fullname, email, department);
+    public FacultyDto updateFaculty(String id, String fullName, String email, String department, double rate, double hours) {
+        return service.update(id, fullName, email, department, rate, hours);
     }
 
     public void deleteFaculty(String id) {
