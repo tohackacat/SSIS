@@ -27,4 +27,5 @@ dependencies {
     implementation("org.jline:jline-terminal-jansi:3.30.6")
     implementation("org.jline:jline-terminal-jni:3.30.6")
     implementation("net.java.dev.jna:jna:5.18.1")
+    implementation("org.xerial:sqlite-jdbc:3.51.1.0")
 }
