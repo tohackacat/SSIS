@@ -74,6 +74,7 @@ public final class App {
                 terminal.writer().write("\u001b[?25h");
                 terminal.flush();
 
+                terminal.puts(InfoCmp.Capability.cursor_visible);
                 terminal.puts(InfoCmp.Capability.keypad_local);
                 terminal.puts(InfoCmp.Capability.exit_ca_mode);
                 terminal.flush();
@@ -114,7 +115,10 @@ public final class App {
                     enrollmentController,
                     teachingController
             );
-
+            terminal.puts(InfoCmp.Capability.keypad_xmit);
+            terminal.puts(InfoCmp.Capability.cursor_invisible);
+            terminal.puts(InfoCmp.Capability.enter_ca_mode);
+            terminal.flush();
             UiApp app = new UiApp(terminal, root);
             EventLoop loop = new EventLoop(app, input, pendingResize);
             loop.run();
