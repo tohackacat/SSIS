@@ -1,12 +1,12 @@
 package org.example.teaching.service;
 
+import org.example.core.EntityId;
 import org.example.course.Course;
 import org.example.course.CourseRepository;
 import org.example.faculty.Faculty;
 import org.example.faculty.FacultyRepository;
 import org.example.person.Person;
 import org.example.person.PersonRepository;
-import org.example.core.EntityId;
 import org.example.teaching.Teaching;
 import org.example.teaching.TeachingRepository;
 import org.example.teaching.TeachingService;
