@@ -10,14 +10,14 @@ public record EntityId(UUID value) {
     }
 
     //specify an id
-    public static EntityId fromString(String text){
+    public static EntityId fromString(String text) {
         return new EntityId(UUID.fromString(text));
     }
-    
+
     //override the built-in toString record method
     //only get the value as a string
     @Override
-    public String toString(){
+    public String toString() {
         return value.toString();
     }
 }

@@ -16,21 +16,21 @@ import org.example.faculty.FacultyRepository;
 public class JdbcFacultyRepository implements FacultyRepository {
     private final DatabaseProvider provider;
 
-    public JdbcFacultyRepository(DatabaseProvider provider){
+    public JdbcFacultyRepository(DatabaseProvider provider) {
         this.provider = provider;
     }
 
     @Override
-    public Iterable<Faculty> findAll(){
+    public Iterable<Faculty> findAll() {
         List<Faculty> result = new ArrayList<>();
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                "SELECT id, person_id, department FROM faculty ORDER BY department, id")) {
-                    try(ResultSet rs = statement.executeQuery()){
-                        while(rs.next()){
-                            result.add(mapRow(rs));
-                        }
-                    }
+                     "SELECT id, person_id, department FROM faculty ORDER BY department, id")) {
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    result.add(mapRow(rs));
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to load faculty", e);
         }
@@ -38,69 +38,66 @@ public class JdbcFacultyRepository implements FacultyRepository {
     }
 
     @Override
-    public Optional<Faculty> findById(EntityId id){
-        try(Connection connection = provider.getConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                "SELECT id, person_id, department FROM faculty WHERE id = ?")){
-                    try(ResultSet rs = statement.executeQuery()){
-                        if (rs.next()) {
-                            return Optional.of(mapRow(rs));
-                        }
-                        return Optional.empty();
-                    }
-        } catch(SQLException e){
+    public Optional<Faculty> findById(EntityId id) {
+        try (Connection connection = provider.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT id, person_id, department FROM faculty WHERE id = ?")) {
+            statement.setString(1, id.toString());
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRow(rs));
+                }
+                return Optional.empty();
+            }
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to load faculty " + id, e);
         }
     }
- 
+
     @Override
-    public void insert(Faculty faculty){
+    public void insert(Faculty faculty) {
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                "INSERT INTO faculty (id, person_id, department) VALUES (?,?,?)")) {
-                statement.setString(1, faculty.id().toString());
-                statement.setString(2,faculty.personId().toString());
-                statement.setString(3,faculty.department());
-                statement.executeUpdate();
+                     "INSERT INTO faculty (id, person_id, department) VALUES (?, ?, ?)")) {
+            statement.setString(1, faculty.id().toString());
+            statement.setString(2, faculty.personId().toString());
+            statement.setString(3, faculty.department());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to insert faculty", e);
         }
     }
- 
+
     @Override
-    public void update(Faculty faculty){
+    public void update(Faculty faculty) {
         try (Connection connection = provider.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                "UPDATE faculty SET person_id = ?, department = ?, WHERE id = ?")) {
-                    statement.setString(1, faculty.personId().toString());
-                    statement.setString(2, faculty.department());
-                    statement.setString(3,faculty.id().toString());
-                    statement.executeUpdate();
-            
+                     "UPDATE faculty SET person_id = ?, department = ? WHERE id = ?")) {
+            statement.setString(1, faculty.personId().toString());
+            statement.setString(2, faculty.department());
+            statement.setString(3, faculty.id().toString());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Failed to update faculty", e);
         }
     }
- 
-    @Override
-    public void delete(EntityId id){
-        try(Connection connection = provider.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                "DELETE FROM faculty  WHERE id = ?")) {
-                    statement.setString(1,id.toString());
-                    statement.executeUpdate();
-        } catch(SQLException e){
-            throw new RuntimeException("Failed to delete faculty" + id, e);
-        }
 
+    @Override
+    public void delete(EntityId id) {
+        try (Connection connection = provider.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "DELETE FROM faculty WHERE id = ?")) {
+            statement.setString(1, id.toString());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to delete faculty " + id, e);
+        }
     }
 
-    private Faculty mapRow(ResultSet rs) throws SQLException{
-        String id = rs.getString("id");
-        String personId = rs.getString("person_id");
+    private Faculty mapRow(ResultSet rs) throws SQLException {
+        EntityId entityId = EntityId.fromString(rs.getString("id"));
+        EntityId personEntityId = EntityId.fromString(rs.getString("person_id"));
         String department = rs.getString("department");
-        EntityId entityId = EntityId.fromString(id);
-        EntityId personEntityId = EntityId.fromString(personId);
         return new Faculty(entityId, personEntityId, department);
     }
 }
