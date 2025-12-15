@@ -110,4 +110,3 @@ public class JdbcPersonRepository implements PersonRepository {
         return new Person(id, fullName, email);
     }
 }
-
