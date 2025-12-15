@@ -1,93 +1,138 @@
+<div align="center">
+
 # SSIS
 
-## Team Info
+### Simple School Information System · Terminal UI · SQLite
 
-Final Java Project for CST-162.
-Konstaniyn, Camila, and Omar.
+<img alt="Java 21+" src="https://img.shields.io/badge/Java-21%2B-000000?style=for-the-badge&logo=openjdk&logoColor=white">
+<img alt="Gradle" src="https://img.shields.io/badge/Build-Gradle-000000?style=for-the-badge&logo=gradle&logoColor=white">
+<img alt="SQLite" src="https://img.shields.io/badge/Database-SQLite-000000?style=for-the-badge&logo=sqlite&logoColor=white">
+<img alt="JLine" src="https://img.shields.io/badge/TUI-JLine-000000?style=for-the-badge&logo=windowsterminal&logoColor=white">
+<img alt="Course Project" src="https://img.shields.io/badge/Project-CST%20162-000000?style=for-the-badge">
 
-## Project Description
+**Course:** CST 162 - Computer Algorithms  
+**Instructor:** Prof. Ibtisam Ali  
+**Team Members:** Kostiantyn, Camila, Omar
 
-A School Information System implementing layered architecture to communicate with database data and display relevant information.
-It demonstrates uses of classes, records, interfaces, inheritance, methods, conditionals, and collections.
+A menu-driven School Information System written in Java. SSIS runs as a terminal UI and lets you manage students,
+faculty, and courses, plus the relationships between them (enrollments and teaching assignments). Data is stored in a
+local SQLite database file to keep the system realistic and persistent.
 
-Program Structure: 
-core:
-    EntityID.java: a record holding a UUID (from the java.util library). Has methods for random generation or reading from a String.
+</div>
 
-db:
-    DatabaseProvider.java: a record holding a String url. Uses java.sql library to get the Java Database Connectivity API to access data in a relational database.
-    DatabaseInitializer.java:  a record that takes a provider. Creates and executes sql queries, creates a sample database with sample entities.
+## What you can do
 
-course:
-    Course.java: entity record with parameters for id, code, string name, credits. 
-    CourseDto.java: Data Transfer Object record with same parameters.
-    CourseRepository.java: course repo interface with CRUD methods findALL, findById, insert, update, delete for course entity.
-    CourseService.java: course service layer interface with CRUD methods findALL, findById, insert, update, delete for course DTO.
-    CourseController.java: a class to interact with DTO's through the course service methods (i.e. creates wrapper methods that  return DTO's through service method calls).
-    JdbcCourseRepository: a class that implements repository interface. Implements the methods through SQL queries to the the database. employs exception handling for connectivity and input errors.
-    DefaultCourseService.java: a class that implements service interface. Takes entities into data transfer object manipulation 
+SSIS supports CRUD-style management for these areas:
 
-enrollment:
-    Enrollment.java: entity record with parameters for id, studentId, CourseId, grade. 
-    EnrollmentDto.java: Data Transfer Object record with same parameters.
-    EnrollmentRepository.java: course repo interface with CRUD methods findALL, findById, insert, update, delete for enrollment entity.
-    EnrollmentService.java: course service layer interface with CRUD methods findALL, findById, insert, update, delete for enrollment DTO.
-    EnrollmentController.java: a class to interact with DTO's through the course service methods (i.e. creates wrapper methods that  return DTO's through service method calls).
-    JdbcEnrollmentRepository: a class that implements repository interface. Implements the methods through SQL queries to the the database. employs exception handling for connectivity and input errors.
-    DefaultEnrollmentService.java: a class that implements service interface. Takes entities into data transfer object manipulation 
+| Area        | What it manages                          | Notes                              |
+|-------------|------------------------------------------|------------------------------------|
+| Students    | Name, optional email, enrollment year    | Create, edit, delete               |
+| Faculty     | Name, optional email, department         | Create, edit, delete               |
+| Courses     | Course code, name, credits               | Create, edit, delete               |
+| Enrollments | Student ↔ course, with an optional grade | Create, edit grade, delete, filter |
+| Teachings   | Faculty ↔ course, with a required role   | Create, edit role, delete          |
 
-faculty:
-    Faculty.java: entity record with parameters for id, personId, department. 
-    FacultyDto.java: Data Transfer Object record with same parameters.
-    FacultyRepository.java: course repo interface with CRUD methods findALL, findById, insert, update, delete for faculty entity.
-    FacultyService.java: course service layer interface with CRUD methods findALL, findById, insert, update, delete for faculty DTO.
-    FacultyController.java: a class to interact with DTO's through the service methods (i.e. creates wrapper methods that  return DTO's through service method calls).
-    JdbcFacultyRepository: a class that implements repository interface. Implements the methods through SQL queries to the the database. employs exception handling for connectivity and input errors.
-    DefaultFacultyService.java: a class that implements service interface. Takes entities into data transfer object manipulation 
+## Requirements
 
-person:
-    Person.java: entity record with parameters for id, fullName, and Optional email. 
-    PersonDto.java: Data Transfer Object record with same parameters.
-    PersonRepository.java: course repo interface with CRUD methods findALL, findById, insert, update, delete for person entity.
-    PersonService.java: course service layer interface with CRUD methods findALL, findById, insert, update, delete for person DTO.
-    PersonController.java: a class to interact with DTO's through the service methods (i.e. creates wrapper methods that return DTO's through service method calls).
-    JdbcPersonRepository: a class that implements repository interface. Implements the methods through SQL queries to the the database. employs exception handling for connectivity and input errors.
-    DefaultPersonService.java: a class that implements service interface. Takes entities into data transfer object manipulation 
+Java 21+ is recommended (the codebase uses modern Java features such as records and newer switch/instanceof forms).
 
-student:
-    Student.java: entity record with parameters for id, personId, enrollmentYear. 
-    StudentDto.java: Data Transfer Object record with same parameters.
-    StudentRepository.java: course repo interface with CRUD methods findALL, findById, insert, update, delete for student entity.
-    StudentService.java: course service layer interface with CRUD methods findALL, findById, insert, update, delete for student DTO.
-    StudentController.java: a class to interact with DTO's through service methods (i.e. creates wrapper methods that  return DTO's through service method calls).
-    JdbcStudentRepository: a class that implements repository interface. Implements the methods through SQL queries to the the database. employs exception handling for connectivity and input errors.
-    DefaultStudentService.java: a class that implements service interface. Takes entities into data transfer object manipulation 
+Your build must include dependencies for JLine (terminal handling) and the SQLite JDBC driver (for the `jdbc:sqlite:`
+connection).
 
-teaching:
-    Teaching.java: entity record with parameters for id, courseId, facaultyId, role. 
-    TeachingDto.java: Data Transfer Object record with same parameters.
-    TeachingRepository.java: repo interface with CRUD methods findALL, findById, insert, update, delete for teaching entity.
-    TeachingService.java: service layer interface with CRUD methods findALL, findById, insert, update, delete for teaching DTO.
-    TeachingController.java: a class to interact with DTO's through the service methods (i.e. creates wrapper methods that  return DTO's through service method calls).
-    JdbcTeachingRepository: a class that implements repository interface. Implements the methods through SQL queries to the the database. employs exception handling for connectivity and input errors.
-    DefaultTeachingService.java: a class that implements service interface. Takes entities into data transfer object manipulation 
+## How to run
 
-Tui:
-    holds the text user interface classes and methods. Uses the jline package to create interactable text base interface in terminal.
+Main class:
 
-App: 
-    has the main method
+`org.example.App`
 
+### To build
 
-## Technologies Used
-Java
-Github
-Lists and ArrayLists
-Loops and Conditionals
-Verifications and Exception Handling
-SQL
-Database implementation
-Object Oriented Programming Concepts
+```bash
+./gradlew installDist
+````
 
-## How to Run
-./gradlew installDist && ./build/install/SSIS/bin/SSIS
+### To run
+
+```bash
+./build/SSIS/bin/SSIS
+```
+
+If your run script is not executable on your system, make it executable and run again:
+
+```bash
+chmod +x ./build/SSIS/bin/SSIS
+./build/SSIS/bin/SSIS
+```
+
+## Navigation and controls
+
+SSIS is keyboard-driven and designed to feel like a compact terminal app instead of a plain text prompt.
+
+| Context      | Keys           | Behavior             |
+|--------------|----------------|----------------------|
+| Menus        | Up/Down, Enter | Move selection, open |
+| Anywhere     | Esc            | Back / Exit          |
+| List screens | N, Enter, D    | New, edit, delete    |
+
+Enrollments and teachings also include actions for filtering and editing relationship-specific fields (grade, role),
+shown in the screen footer.
+
+## Data storage
+
+SSIS stores data in a local SQLite database file created next to the app at runtime.
+
+Default file name:
+
+`university.db`
+
+Deleting this file resets the system back to a fresh state on the next run.
+
+## Program structure
+
+The project is organized by responsibility so each piece stays small and testable.
+
+| Layer        | Purpose                             | Examples                                  |
+|--------------|-------------------------------------|-------------------------------------------|
+| UI           | Terminal screens and input handling | `*Screen`, overlays, pickers              |
+| Controllers  | Screen-facing API (glue layer)      | `StudentController`, `FacultyController`  |
+| Services     | Business rules and validation       | `Default*Service`                         |
+| Repositories | Persistence logic (JDBC + SQL)      | `Jdbc*Repository`                         |
+| DB utilities | Connections and schema setup        | `DatabaseProvider`, `DatabaseInitializer` |
+
+## Techniques and concepts demonstrated
+
+| Concept             | Where it shows up in SSIS                                        |
+|---------------------|------------------------------------------------------------------|
+| Classes and objects | Students, faculty, courses, and relationship models              |
+| Encapsulation       | Getters/setters or record accessors, validation at service level |
+| Decision-making     | Menu routing and action handling                                 |
+| Loops               | Continuous menus and screen refresh behavior                     |
+| Collections         | Managing and rendering lists of entities                         |
+| Exceptions          | Input validation and safe handling of invalid actions            |
+| Formatting          | Consistent table-like output in the terminal                     |
+| Persistence         | SQLite database with repositories and SQL                        |
+
+## Team contributions
+
+> Kostiantyn served as the team lead and overall architect. He designed the project structure (UI, controllers,
+> services,
+> repositories, database utilities) and implemented most of the terminal UI (TUI), including the menu navigation and
+> screen
+> flows.
+
+> Camila contributed to the backend architecture and implementation, working on core logic and persistence-related parts
+> of
+> the system. She collaborated closely with the team to ensure the architecture stayed consistent and the features
+> matched
+> the requirements.
+
+> Omar contributed to the backend architecture and implementation, helping build and integrate parts of the service and
+> repository layers. He worked with the team on debugging, refining behavior, and making sure features were complete and
+> reliable.
+
+All team members supported each other through review, pair-debugging, and coordinating changes across multiple parts of
+the codebase to keep the system stable and cohesive.
+
+## Notes
+
+This project was created as part of the end-of-semester assignment to apply the Java concepts covered in class.
