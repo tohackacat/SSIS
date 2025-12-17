@@ -2,10 +2,12 @@ plugins {
     application
     java
     eclipse
+    id("com.gradleup.shadow") version "8.3.0"
 }
 
 application {
     mainClass = "org.example.App"
+    applicationDefaultJvmArgs = listOf("--add-opens=java.base/java.lang=ALL-UNNAMED")
 }
 
 java {
@@ -13,6 +15,11 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+distributions.shadow {}
+tasks.installShadowDist {}
+tasks.startShadowScripts {}
+tasks.shadowDistZip {}
+tasks.shadowDistTar {}
 
 repositories {
     mavenCentral()
