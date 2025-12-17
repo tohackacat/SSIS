@@ -54,14 +54,14 @@ Main class:
 ### To run
 
 ```bash
-./build/SSIS/bin/SSIS
+./build/install/SSIS/bin/SSIS
 ```
 
 If your run script is not executable on your system, make it executable and run again:
 
 ```bash
 chmod +x ./build/SSIS/bin/SSIS
-./build/SSIS/bin/SSIS
+./build/install/SSIS/bin/SSIS
 ```
 
 ## Navigation and controls
